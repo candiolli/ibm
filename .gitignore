@@ -1,0 +1,14 @@
+# Áudio de ensaio do coral (~693 MB) — mantido apenas localmente por enquanto.
+# São 140 faixas de playback/naipe do CD "A frente dois caminhos" e de
+# "Hinos de Louvor 3". Ficam fora do versionamento para não inflar o repositório;
+# mp3 não comprime nem faz delta, então o peso seria permanente no histórico.
+# Para versionar depois, remova estas linhas (ou avalie Git LFS).
+Musicas/coral/**/*.mp3
+Musicas/coral/**/*.wpp
+Musicas/coral/2018/Voz de melodia/A frente dois caminhos/baixo/Não temais - Glória a Deus - Baixo
+
+# Lixo de sistema operacional e arquivos temporários do Word
+desktop.ini
+.DS_Store
+Thumbs.db
+~$*
