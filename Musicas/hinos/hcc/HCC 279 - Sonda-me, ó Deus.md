@@ -15,12 +15,6 @@
 
 - [Partitura cifrada](HCCCIF%20279.pdf)
 
-## Onde já usamos
-
-| Data | Culto | Posição |
-|---|---|---|
-| 27/09/2026 | Noite — "Cavando Nossa Própria Cova" (Lm 4.12-22) | 3ª música |
-
 ## Letra e cifra (tom F)
 
 Acordes entre parênteses são opcionais. A partitura também sugere F7 no lugar de
