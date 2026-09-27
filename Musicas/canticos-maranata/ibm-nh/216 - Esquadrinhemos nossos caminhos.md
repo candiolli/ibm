@@ -21,12 +21,6 @@ voltar ao Senhor (v.40) e a certeza de que as misericórdias dele não têm fim 
 renovam cada manhã (v.22-23). Serve bem à série *Deus em Meio às Ruínas* e a
 momentos de exame do coração e arrependimento.
 
-## Onde já usamos
-
-| Data | Culto | Posição |
-|---|---|---|
-| 27/09/2026 | Noite — "Cavando Nossa Própria Cova" (Lm 4.12-22) | 3ª música |
-
 ## Letra e cifra (tom C)
 
 `[ ]` marca o trecho que se repete.
