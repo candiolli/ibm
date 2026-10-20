@@ -12,3 +12,6 @@ desktop.ini
 .DS_Store
 Thumbs.db
 ~$*
+
+# Cache do Python
+__pycache__/
