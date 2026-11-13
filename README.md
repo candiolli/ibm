@@ -663,6 +663,8 @@ Cifrário geral em [`Musicas/contemporaneas/`](Musicas/contemporaneas), uma past
 é a **seção temática do próprio hinário**, lida na página do hino. O hinário completo
 também está em [hcc-cifrado.pdf](Musicas/hinos/hcc/hcc-cifrado.pdf) (503 páginas).
 
+Para achar um hino pelo número ou pelo nome, use o índice [Musicas/hinos/hcc/INDICE.md](Musicas/hinos/hcc/INDICE.md).
+
 <details>
 <summary><strong>Deus Triúno</strong> — 7 hinos</summary>
 

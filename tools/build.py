@@ -308,12 +308,70 @@ for letra in sorted(rows, key=sortkey):
 W('---')
 W('')
 
+# ---------------------------------------------- índice próprio do HCC
+# Gera Musicas/hinos/hcc/INDICE.md (por número e por nome), com links relativos
+# à própria pasta, para achar um hino sem abrir os PDFs.
+HCCDIR = 'Musicas/hinos/hcc'
+hcc_arquivos = sorted(os.listdir(os.path.join(ROOT, HCCDIR)))
+hcc = []
+for line in dados('hcc_titles.tsv'):
+    num, titulo, secao = line.rstrip('\n').split('\t')
+    hcc.append((num, titulo, titulo_pt(secao.strip())))
+
+def hcc_links(num):
+    """Partitura cifrada + qualquer material extra (letra, slide, áudio, cifra) do hino."""
+    partes = []
+    for f in hcc_arquivos:
+        nfc = unicodedata.normalize('NFC', f)
+        if re.match(rf'^HCCCIF {num}\b.*\.pdf$', nfc):
+            partes.insert(0, ('cifra', f))
+        elif re.search(rf'\bHCC {num}\b', nfc):
+            ext = os.path.splitext(nfc)[1].lower()
+            partes.append(({'.md': 'letra', '.pptx': 'slide', '.mp3': 'áudio'}.get(ext, ext[1:]), f))
+    if num == '106':
+        partes.append(('cifra Cifra Club', next(f for f in hcc_arquivos if f.startswith('Cifra Club - HCC'))))
+    if not partes:
+        raise SystemExit(f'HCC {num}: nenhum arquivo encontrado')
+    return ' · '.join(f'[{r}]({urllib.parse.quote(f)})' for r, f in partes)
+
+I = []
+I.append('# Índice — Hinário para o Culto Cristão (HCC)')
+I.append('')
+I.append('> **Arquivo gerado — não edite à mão.** Os títulos vêm de [`tools/hcc_titles.tsv`](../../../tools/hcc_titles.tsv);')
+I.append('> para atualizar, rode `python3 tools/build.py`.')
+I.append('')
+I.append(f'{len(hcc)} hinos com partitura cifrada nesta pasta. O hinário completo está em '
+         f'[hcc-cifrado.pdf](hcc-cifrado.pdf). Números que faltam na sequência não têm PDF no acervo.')
+I.append('')
+I.append('- [Por número](#por-número)')
+I.append('- [Por nome](#por-nome)')
+I.append('')
+I.append('## Por número')
+I.append('')
+I.append('| Nº | Hino | Seção | Arquivos |')
+I.append('|---:|---|---|---|')
+for num, titulo, secao in hcc:
+    I.append(f'| {int(num)} | {titulo} | {secao} | {hcc_links(num)} |')
+I.append('')
+I.append('## Por nome')
+I.append('')
+I.append('| Hino | Nº | Partitura |')
+I.append('|---|---:|---|')
+for num, titulo, secao in sorted(hcc, key=lambda h: sortkey(re.sub(r'^[^\w]+', '', h[1]))):
+    I.append(f'| {titulo} | {int(num)} | {hcc_links(num).split(" · ")[0]} |')
+I.append('')
+open(os.path.join(ROOT, HCCDIR, 'INDICE.md'), 'w', encoding='utf-8').write('\n'.join(I))
+REAL[f'{HCCDIR}/INDICE.md'] = f'{HCCDIR}/INDICE.md'
+print(f'{HCCDIR}/INDICE.md gerado —', len(hcc), 'hinos')
+
 # ---------------------------------------------- 3. HCC
 W('## 3. Hinário para o Culto Cristão — HCC')
 W('')
 W('441 hinos cifrados digitalizados em [`Musicas/hinos/hcc/`](Musicas/hinos/hcc) (JUERP). O tema de cada hino')
 W('é a **seção temática do próprio hinário**, lida na página do hino. O hinário completo')
 W('também está em ' + link('hcc-cifrado.pdf', 'Musicas/hinos/hcc/hcc-cifrado.pdf') + ' (503 páginas).')
+W('')
+W('Para achar um hino pelo número ou pelo nome, use o índice ' + link('Musicas/hinos/hcc/INDICE.md', 'Musicas/hinos/hcc/INDICE.md') + '.')
 W('')
 secoes = {}
 ordem = []
